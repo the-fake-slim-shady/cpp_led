@@ -1,0 +1,79 @@
+#include <memory>
+
+#include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/string.hpp"
+
+class MinimalSubscriber : public rclcpp::Node
+{
+public:
+  MinimalSubscriber()
+  : Node("minimal_subscriber")
+  {
+    auto topic_callback =
+      [this](std_msgs::msg::String::UniquePtr msg) -> void {
+        RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg->data.c_str());
+      };
+    subscription_ =
+      this->create_subscription<std_msgs::msg::String>("topic", 10, topic_callback);
+  }
+
+private:
+  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
+};
+
+int main(int argc, char * argv[])
+{
+  rclcpp::init(argc, argv);
+  rclcpp::spin(std::make_shared<MinimalSubscriber>());
+  rclcpp::shutdown();
+  return 0;
+}
+
+
+docker run \
+  --name ros2 \
+  -h rosdk \
+  -v /home/sakai/ros2_ws:/home/rosuser/ros2_ws \
+  --device /dev/gpiochip0 \
+  --device /dev/gpiochip1 \
+  --group-add 993 \
+  --privileged \
+  --userns=host \
+  -e TZ=Asia/Tokyo \
+  --network host \
+  --ipc host \
+  -w /home/rosuser/ros2_ws \
+  -it control_led
+
+  
+docker run \
+  -h rosdk \
+  -v /home/sakai/ros2_ws:/home/ubuntu/ros2_ws \
+  --device /dev/gpiochip0 \
+  --device /dev/gpiochip1 \
+  --group-add $(getent group gpio | cut -d: -f3) \
+  --privileged \
+  --userns=host \
+  -e TZ=Asia/Tokyo \
+  --network host \
+  --ipc host \
+  -w /home/ubuntu/ros2_ws \
+  -it control_led
+
+  # 1. 1GBのSWAPを作成（サイズは必要に応じて調整）
+sudo fallocate -l 4G /swapfile
+
+# 2. アクセス権設定
+sudo chmod 600 /swapfile
+
+# 3. SWAPフォーマット
+sudo mkswap /swapfile
+
+# 4. SWAPを有効化
+sudo swapon /swapfile
+
+# 5. 確認
+free -h
+
+
+
