@@ -74,6 +74,3 @@ sudo swapon /swapfile
 
 # 5. 確認
 free -h
-
-
-
