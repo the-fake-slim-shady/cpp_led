@@ -4,7 +4,7 @@
   <name>cpp_led</name>
   <version>0.0.0</version>
   <description>detect number of lighting LED</description>
-  <maintainer email="sakai.oitauniv@gmial.com">sakai</maintainer>
+  <maintainer email="sample@email.com">your_name</maintainer>
   <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
