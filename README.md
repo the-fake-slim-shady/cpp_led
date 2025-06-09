@@ -45,8 +45,27 @@ ros2 run cpp_led led_sub
 #ラズパイ上またはPC上でled_key.cppを実行する
 ros2 run cpp_led led_key
 ```
-
+## 実行の様子
 実行してボタンを押すとランダムな個数分LEDが点灯する。また、その情報を受けとり表示させることが出来る。
 キーボードの0〜3の数字を押すと任意の個数のLEDを点灯させることが出来る。
 以下が実行の様子である。
 
+1つ目はled_pubのターミナルの画像。点灯させて、パブリッシュしている情報を表示させている。
+<div align="center">
+<img src = "led_pub.png" alt = "led_pubのターミナル" width = "700">
+</div>
+
+2つ目はled_subのターミナルの画像。点灯しているLEDの数を表示させている。
+<div align="center">
+<img src = "led_sub.png" alt = "led_subのターミナル" width = "700">
+</div>
+
+3つ目はled_keyのターミナルの画像。ボタンを押すように促している。
+<div align="center">
+<img src = "led_key.png" alt = "led_keyのターミナル" width = "700">
+</div>
+
+最後に動作しているところをGIFにて示す。
+<div align="center">
+  <img src="cpp_led.gif" alt="動作デモ" width="500">
+</div>
