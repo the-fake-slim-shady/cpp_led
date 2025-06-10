@@ -10,7 +10,7 @@ class KeyBoadPub : public rclcpp::Node
 {
     public:
         KeyBoadPub()
-        : Node("keyboad_publisher")
+        : Node("keyboard_publisher")
         {
             publisher_ = this-> create_publisher<std_msgs::msg::Int16>("your_token", 10);
             timer_ = this->create_wall_timer(50ms, [this]() {this -> call_back(); });
