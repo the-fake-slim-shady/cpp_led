@@ -6,10 +6,10 @@
 
 using namespace std::chrono_literals;
 
-class KeyBoadPub : public rclcpp::Node
+class KeyBoardPub : public rclcpp::Node
 {
     public:
-        KeyBoadPub()
+        KeyBoardPub()
         : Node("keyboard_publisher")
         {
             publisher_ = this-> create_publisher<std_msgs::msg::Int16>("your_token", 10);
@@ -60,7 +60,7 @@ int main(int argc, char * argv[])
 {
     rclcpp::init(argc, argv);
     try {
-        rclcpp::spin(std::make_shared<KeyBoadPub>());
+        rclcpp::spin(std::make_shared<KeyBoardPub>());
     } catch (const std::exception &e) {
         std::cerr << "Exception caught: " << e.what() << std::endl;
     }
